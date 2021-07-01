@@ -20,8 +20,8 @@ local_env = open(os.path.join(BASE_DIR, '.env'))                                
 
 while True:
     line = local_env.readline()                                                 # .env에 있는 파일을 =를 기준으로 왼쪽을 key, 오른쪽을 value로 집어넣기
-    if not line:
-        break
+    if not line:                                                                #dict에 저장을 하다가 더이상 읽을 파일이 없다면 line은 NONE이 된다.
+        break                                                                   #더이상 읽을 파일이 없어 NONE이 되므로 break.
     line = line.replace('\n', '')                                               #
     start = line.find('=')
     key = line[:start]
