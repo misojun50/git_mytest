@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
+{% include 'head.html' %}
 <body>
 
-<h1>Hello World ㅇㅅㅇ</h1>
+{% include 'header.html' %}
 
+{% block content %}
+{% endblock %}
+
+{% include 'footer.html' %}
+
+    <h1>Hello World ㅇㅅㅇ</h1>
+    <p>What are you doing?</p>
+    <footer>No Copyright ??? Not right reserved?</footer>
 </body>
 </html>
+
+
+
+
