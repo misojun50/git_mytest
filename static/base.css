@@ -1,0 +1,17 @@
+.main_logo{
+        margin: 2rem 0;
+        font-family: 'Lobster', cursive;
+}
+
+.main_marge{
+        margin-bottom: 2rem;
+}
+
+.sub_marge{
+        margin-top: 2rem;
+}
+
+.sub_logo{
+        margin: 1.5rem 0;
+        font-family: 'Lobster', cursive;
+}
