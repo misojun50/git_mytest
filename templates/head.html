@@ -1,3 +1,7 @@
+{% load static %} {# staic 폴더를 미리 로드함. 그리고 경로가 어디 있는지를 알려줘야함 settings.py에있는 밑에 django코드  복사 #}
+
+
+
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
@@ -10,5 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    {#  static 파일 링크. 이건 직접 입력해야함 그리고 추가로 해야할 것이 있음. #}
+    <link rel="stylesheet", type="text/css", href="{% static 'base.css' %}">
 
 </head>
