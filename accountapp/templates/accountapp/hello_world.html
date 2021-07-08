@@ -17,12 +17,18 @@
 
 
     <div style="height : 20rem; background-color: aqua; margin: 2rem;
-    border-radius: 1rem; font-size: 2rem;">
+    border-radius: 1rem; font-size: 2rem; overflow: hidden">
+{#  inline-block이 아닐때 상자 밖으로 튀어나오는데 그떄 overflow 로 해결함. hidden또는 scroll #}
         <h1>dddd</h1>
 {#em, rem, px % 테스트#}
     <div class="testing" style="height: 48px; width: 48px;">px</div>
     <div class="testing" style="height: 3rem; width: 3rem;">rem</div>
     <div class="testing" style="height: 3em; width: 3em;">em</div>
+        <div class="testing" style="height: 3em; width: 3em;">em</div>
+        <div class="testing" style="height: 3em; width: 3em;">em</div>
+        <div class="testing" style="height: 3em; width: 3em;">em</div>
+        <div class="testing" style="height: 3em; width: 3em;">em</div>
+        <div class="testing" style="height: 3em; width: 3em;">em</div>
     <div class="testing" style="height: 30%; width: 30%;">%</div>
     </div>
 {% endblock %}
