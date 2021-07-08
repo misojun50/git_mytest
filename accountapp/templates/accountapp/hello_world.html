@@ -2,33 +2,19 @@
 
 {% block content %}
 
-    <style>
-{#em,rem 테스트#}
+<div style="margin: 2rem; text-align: center">
+    <h1>METH</h1>
 
-    .testing{
-        background-color: yellow;
-        margin : 1rem;
-        height : 48px;
-        width : 48px;
-        border-radius: .5rem;
-        display : inline-block;
-    }
-    </style>
+{#   method없이 사용하면 get으로 인식함 #}
+{#  bootstrap 에서 버튼 원하는거 고르기, type뒤에 넣기  #}
+{#    csrf_token 형식을 넣어야 정상적으로 post로 작동함#}
+    <form action="/accounts/hello_world/" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-info rounded-pill px-4">
 
+    </form>
 
-    <div style="height : 20rem; background-color: aqua; margin: 2rem;
-    border-radius: 1rem; font-size: 2rem; overflow: hidden">
-{#  inline-block이 아닐때 상자 밖으로 튀어나오는데 그떄 overflow 로 해결함. hidden또는 scroll #}
-        <h1>dddd</h1>
-{#em, rem, px % 테스트#}
-    <div class="testing" style="height: 48px; width: 48px;">px</div>
-    <div class="testing" style="height: 3rem; width: 3rem;">rem</div>
-    <div class="testing" style="height: 3em; width: 3em;">em</div>
-        <div class="testing" style="height: 3em; width: 3em;">em</div>
-        <div class="testing" style="height: 3em; width: 3em;">em</div>
-        <div class="testing" style="height: 3em; width: 3em;">em</div>
-        <div class="testing" style="height: 3em; width: 3em;">em</div>
-        <div class="testing" style="height: 3em; width: 3em;">em</div>
-    <div class="testing" style="height: 30%; width: 30%;">%</div>
+{#  단순출력용 {{   }}#}
+    <h3>{{ text }}</h3>
     </div>
 {% endblock %}
