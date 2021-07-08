@@ -3,6 +3,7 @@
 {% block content %}
 
     <style>
+{#em,rem 테스트#}
 
     .testing{
         background-color: yellow;
@@ -10,20 +11,18 @@
         height : 48px;
         width : 48px;
         border-radius: .5rem;
+        display : inline-block;
     }
-
     </style>
 
 
-    <div style="height : 20rem; background-color: aqua; margin: 2rem; border-radius: 1rem;">
-    <p style="text-align: center; font-size: 50px">
-        dddd
-    </p>
+    <div style="height : 20rem; background-color: aqua; margin: 2rem;
+    border-radius: 1rem; font-size: 2rem;">
+        <h1>dddd</h1>
 {#em, rem, px % 테스트#}
-    <div class="testing" style="display : block">block </div>
-    <div class="testing" style="display : inline">block </div>
-    <div class="testing" style="display : inline-block">block</div>
-    <div class="testing" style="display : none"> </div>
-    <div class="testing">block</div>
+    <div class="testing" style="height: 48px; width: 48px;">px</div>
+    <div class="testing" style="height: 3rem; width: 3rem;">rem</div>
+    <div class="testing" style="height: 3em; width: 3em;">em</div>
+    <div class="testing" style="height: 30%; width: 30%;">%</div>
     </div>
 {% endblock %}
