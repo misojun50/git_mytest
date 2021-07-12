@@ -1,7 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from django.urls import reverse
+
 from accountapp.models import HelloWorld
 
 
@@ -17,13 +19,12 @@ def hello_world(request):
         new_hel.text = temp
         new_hel.save()
 
-        #모든 데이터 베이스 불러오기
-        hello_world_list = HelloWorld.objects.all()
+        # 새로고침하면 데이터 재입력 방지 urls 참조
+        # 역추적 한다는 개념으로 reverse(django꺼 사용)
+        return HttpResponseRedirect(reverse('accountapp:hello_world'))
 
 
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})     #
-    else:   #get방식일때
+    else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html',
                       context={'hello_world_list': hello_world_list})      # get method 가 안뜨는 이유 = 지정한걸 없애버렸으니 ㅇㅅㅇ
