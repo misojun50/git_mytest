@@ -88,6 +88,8 @@ WSGI_APPLICATION = 'newproject_1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# 데이터베이스 세팅
+#
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
