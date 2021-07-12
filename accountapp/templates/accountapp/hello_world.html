@@ -18,6 +18,11 @@
 
 {#  단순출력용 {{   }}#}
 {#  2. new_hel의 .text가져옴  #}
-    <h3>{{ new_hel.text }}</h3>
+
+{#  3. 여러개를 출력하기위해서 for 문 사용  #}
+    {% for hello_world in hello_world_list %}
+        <h3>{{ hello_world.text }}</h3>
+    {% endfor %}
+{#  django 문은 for 문을 끝낼 때 어디에서 끝낸다는 endfor를 해야함#}
     </div>
 {% endblock %}
