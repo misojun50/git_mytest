@@ -10,6 +10,8 @@
 {#    csrf_token 형식을 넣어야 정상적으로 post로 작동함#}
     <form action="/accounts/hello_world/" method="post">
         {% csrf_token %}
+{#   text : 텍스트타입     #}
+        <input type="text" name="input_text">
         <input type="submit" class="btn btn-info rounded-pill px-4">
 
     </form>
