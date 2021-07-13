@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{# create 작성한거 그대로 복붙 #}
+
+{% block content %}
+
+    <div class="text-center">
+        <div class="m-5">
+            <h4>
+                Login
+            </h4>
+        </div>
+        <div>
+            <form action="{% url 'accountapp:login' %}" method="post">
+{#      경로 변경 잊지 말것. 근데 이거하면 로그인 설정 끝임          #}
+                {% csrf_token %}
+                {{ form }}
+                <div class="m-8">
+                <input type="submit"
+                       class="btn btn-dark rounded-pill px-5">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+{# settings.py 에서 로그인관련 설정 + login_Redirect_url 에서 작성#}
+{% endblock %}
