@@ -40,4 +40,4 @@ class AccountCreateView(CreateView):
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/create.html'
 # 이상 진짜로 간단한 회원가입 로직.
-# urls.py에 내용 추가
+# urls.py에 path 경로 내용 추가

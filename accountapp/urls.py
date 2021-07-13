@@ -8,6 +8,6 @@ urlpatterns = [
     path('hello_world/', hello_world, name="hello_world"),
 # 함수는 classname.as_view() 추가
     path('create/', AccountCreateView.as_view(), name='create')
-
+# 안뜨는게 정상. template설정을 안했기 때문.
 ]
 
