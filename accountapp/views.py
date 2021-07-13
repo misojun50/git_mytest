@@ -1,8 +1,10 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
 
 from accountapp.models import HelloWorld
 
@@ -23,8 +25,19 @@ def hello_world(request):
         # 역추적 한다는 개념으로 reverse(django꺼 사용)
         return HttpResponseRedirect(reverse('accountapp:hello_world'))
 
-
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})      # get method 가 안뜨는 이유 = 지정한걸 없애버렸으니 ㅇㅅㅇ
+                      context={'hello_world_list': hello_world_list})
+
+
+# CreateView 불러오기 그래도 어디 있는지 알아만 두면 편함
+# User, UserCreationForm 도 불러오기
+# class 에서는 "reverse_lazy" 를 쓰는데 함수에서의 reverse 방법과 class 에서의 reverse 방법이 다르기 때문.
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/create.html'
+# 이상 진짜로 간단한 회원가입 로직.
+# urls.py에 내용 추가
