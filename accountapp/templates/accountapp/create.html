@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{# 뼈대 그대로 들고오면 됨 #}
+
+{% block content %}
+{# m-5 = 모든 방향으로 마진 설정. #}
+    <div class="text-center">
+        <div class="m-5">
+            <h4>
+                Sign up
+            </h4>
+        </div>
+        <div>
+            <form action="{% url 'accountapp:create' %}" method="post">
+{#      이전과 비슷하지만 url사용 + post사용  +csrf_token사용         #}
+{#      Django 내에서 이미 설정된 것이 있기에, 일일히 적을 필요 X. 그래서 form만 넣으면 됨         #}
+                {% csrf_token %}
+                {{ form }}
+{#      한층 더 생성         #}
+                <div class="m-8">
+                <input type="submit"
+                       class="btn btn-dark rounded-pill px-5">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
