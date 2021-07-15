@@ -26,6 +26,12 @@
                 로그아웃
             </a>
         </span>
+        <span>
+{#  pk값을 추가로 넣어야함. 접근하는 user의 primary key값 입력     #}
+            <a href="{% url "accountapp:detail" pk=user.pk %}">
+                내 페이지
+            </a>
+        </span>
         {% endif %}
 {#  endfor처럼 명시를 해줘야함  #}
         <span>nav5</span>

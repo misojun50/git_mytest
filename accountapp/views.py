@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accountapp.models import HelloWorld
 
@@ -41,3 +41,11 @@ class AccountCreateView(CreateView):
     template_name = 'accountapp/create.html'
 # 이상 진짜로 간단한 회원가입 로직.
 # urls.py에 path 경로 내용 추가
+
+
+#로그인 시 로그인정보 불러오기
+#다음 urls.py에서 라우팅(경로) 설정
+class AccountDetailView(DetailView):
+    model = User
+    context_object_name = 'target_User'
+    template_name = 'accountapp/detail.html'
