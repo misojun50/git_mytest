@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {# 뼈대 그대로 들고오면 됨 #}
+{% load bootstrap4 %}
+{# bootstrap4 적용 #}
 
 {% block content %}
-{# m-5 = 모든 방향으로 마진 설정. #}
+{# m-5 = 모든 방향으로 마진 설정. 5가 최대임 ㅇㅅㅇ #}
 {# 'text-center' = 텍스트 중앙 설정  #}
-    <div class="text-center">
+    <div class="text-center mw-500 m-auto">
         <div class="m-5">
             <h4>
                 Sign up
@@ -15,7 +17,13 @@
 {#      이전과 비슷하지만 url사용 + post사용  +csrf_token사용         #}
 {#      Django 내에서 이미 설정된 것이 있기에, 일일히 적을 필요 X. 그래서 form만 넣으면 됨         #}
                 {% csrf_token %}
-                {{ form }}
+                {% bootstrap_form form %}
+{#      단순 출력 form을 bootstrap form으로 대체          #}
+{#      기본은 블럭형. base.css에서 크기 조정          #}
+{#      적용은 최상위 div에 적용시킴 그러나 적용이 안되는 경우가 있는데 적용 안된 css를 로드한 상태. #}
+{#      크롬 f12눌러 disable cache하면 진행상황 알 수 있음  #}
+{#      m-auto 마진 자동 설정. bootstrap에 딸려있음.          #}
+
 {#      한층 더 생성         #}
                 <div class="m-8">
                 <input type="submit"

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {# create 작성한거 그대로 복붙 #}
+{% load bootstrap4 %}
+{# create와 똑같이 적용시킴#}
 
 {% block content %}
 
-    <div class="text-center">
+    <div class="text-center mw-500 m-auto">
         <div class="m-5">
             <h4>
                 Login
@@ -13,7 +15,7 @@
             <form action="{% url 'accountapp:login' %}" method="post">
 {#      경로 변경 잊지 말것. 근데 이거하면 로그인 설정 끝임          #}
                 {% csrf_token %}
-                {{ form }}
+                {% bootstrap_form form %}
                 <div class="m-5">
                 <input type="submit"
                        class="btn btn-dark rounded-pill px-5">
@@ -26,3 +28,9 @@
 
 {# settings.py 에서 로그인관련 설정 + login_Redirect_url 에서 작성#}
 {% endblock %}
+
+
+{# 7/15 #}
+{# 1. django-bootstrap 4에서 pip install#}
+{# 2. settings.py 에서 installed_apps안에  'bootstrap4', 추가#}
+{# 3. quickstart 참조 #}
