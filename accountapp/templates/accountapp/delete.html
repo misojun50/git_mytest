@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{# 늘 그러하듯이 뼈대 그대로 들고오면 됨 #}
+
+{% block content %}
+    <div class="text-center mw-500 m-auto">
+        <div class="m-5">
+            <h4>
+                Delete
+            </h4>
+        </div>
+        <div>
+            <form action="{% url 'accountapp:delete' pk=target_User.pk %}" method="post">
+                {% csrf_token %}
+
+                <div class="m-5">
+                <input type="submit"
+                       class="btn btn-danger rounded-pill px-5">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
