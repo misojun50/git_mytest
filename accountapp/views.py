@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
 
 
@@ -52,9 +53,12 @@ class AccountDetailView(DetailView):
 
 #업데이트..?
 #createview,detailview 와 비슷함. 각각 요소를 다 들고온다고 생각하면 됨.
+#usercreationform은 아이디도 바꿔 버리기에 그거만 막아야함.
+#accountapp폴더에 forms.py생성
 class AccountUpdateView(UpdateView):
     model = User
-    form_class = UserCreationForm
+    form_class = AccountCreationForm
+    #만들었던 form에서 가져옴
     context_object_name = 'target_User'
     success_url = reverse_lazy('accountapp:hello_world')
     #지금은 detail이 안됨. <int:pk>를 지정안했기 때문.
