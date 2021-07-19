@@ -51,7 +51,7 @@ class AccountDetailView(DetailView):
     template_name = 'accountapp/detail.html'
 
 #업데이트..?
-#createview와 비슷함
+#createview,detailview 와 비슷함. 각각 요소를 다 들고온다고 생각하면 됨.
 class AccountUpdateView(UpdateView):
     model = User
     form_class = UserCreationForm
