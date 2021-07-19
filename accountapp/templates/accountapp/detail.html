@@ -13,6 +13,12 @@
         <div>
             {{ target_User.date_joined }}
         </div>
+{#  내 페이지 수정 링크 연결      #}
+        <div>
+            <a href="{% url 'accountapp:update' pk=target_User.pk %}">
+                Update Info
+            </a>
+        </div>
     </div>
 
 

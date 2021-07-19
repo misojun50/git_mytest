@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{# 뼈대 그대로 들고오면 됨 #}
+{% load bootstrap4 %}
+{# bootstrap4 적용 #}
+
+{% block content %}
+    <div class="text-center mw-500 m-auto">
+        <div class="m-5">
+            <h4>
+                Update info
+            </h4>
+        </div>
+        <div>
+{#      늘 그래왔듯이 그대로 복사 후 붙여놓고 수정      #}
+            <form action="{% url 'accountapp:update' pk=target_User.pk %}" method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <div class="m-5">
+                <input type="submit"
+                       class="btn btn-dark rounded-pill px-5">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
