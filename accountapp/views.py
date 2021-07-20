@@ -11,26 +11,24 @@ from accountapp.models import HelloWorld
 
 
 def hello_world(request):
-    # return render(request, 'accountapp/hello_world.html')
-    # 굳이 templates를 새로 만들고 안에 accountapp폴더를 만들고 html 생성 이유 : 그냥 html만 있으면 경로 꼬임 가능성
-    if request.method == "POST":
+#로그인'했을때'정보 불러오기
+     if request.user.is_authenticated:
 
-        # request에 POST함수에 get으로 input_text 라는 이름을 가진 데이터를 가져와서 temp에 할당시킴
-        temp = request.POST.get('input_text')
-        # 데이터베이스에 저장해주는 과정
-        new_hel = HelloWorld()
-        new_hel.text = temp
-        new_hel.save()
+        if request.method == "POST":
+            temp = request.POST.get('input_text')
+            new_hel = HelloWorld()
+            new_hel.text = temp
+            new_hel.save()
 
-        # 새로고침하면 데이터 재입력 방지 urls 참조
-        # 역추적 한다는 개념으로 reverse(django꺼 사용)
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))
+            return HttpResponseRedirect(reverse('accountapp:hello_world'))
 
-    else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})
-
+        else:
+            hello_world_list = HelloWorld.objects.all()
+            return render(request, 'accountapp/hello_world.html',
+                          context={'hello_world_list': hello_world_list})
+     else:
+         #로그인 안했을 때 로그인 창으로 보내버림
+         return HttpResponseRedirect(reverse('accountapp:login'))
 
 # CreateView 불러오기 그래도 어디 있는지 알아만 두면 편함
 # User, UserCreationForm 도 불러오기
@@ -55,6 +53,10 @@ class AccountDetailView(DetailView):
 #createview,detailview 와 비슷함. 각각 요소를 다 들고온다고 생각하면 됨.
 #usercreationform은 아이디도 바꿔 버리기에 그거만 막아야함.
 #accountapp폴더에 forms.py생성
+
+
+#create와 detail에는 로그인(정보확인)이 필요가 없음.
+#정보 업데이트와 삭제에 개인 데이터가 필요함으로 사용
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
@@ -64,9 +66,46 @@ class AccountUpdateView(UpdateView):
     #지금은 detail이 안됨. <int:pk>를 지정안했기 때문.
     template_name = 'accountapp/update.html'
 
+    #로그인=정보 일치한사람만 변경가능
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+        #밑에 것을 실행하기 전에 로그인 여부 확인
+            return super().get(request, *args, **kwargs)
+        else:
+            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
+            return HttpResponseRedirect(reverse('accountapp:login'))
+        #post메소드로 변경
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+        #밑에 것을 실행하기 전에 로그인 여부 확인
+            return super().post(request, *args, **kwargs)
+        else:
+            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+
+
 #회원탈퇴 기능
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_User'
     success_url = reverse_lazy("accountapp:hello_world")
     template_name = 'accountapp/delete.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+        #밑에 것을 실행하기 전에 로그인 여부 확인
+            return super().get(request, *args, **kwargs)
+        else:
+            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
+            return HttpResponseRedirect(reverse('accountapp:login'))
+        #post메소드로 변경
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+        #밑에 것을 실행하기 전에 로그인 여부 확인
+            return super().post(request, *args, **kwargs)
+        else:
+            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
+            return HttpResponseRedirect(reverse('accountapp:login'))
+
+        #어짜피 안에 들어가는 내용은 똑같기에(로그인 확인, 정보 수정) 그대로 붙여 써도 상관없음.
