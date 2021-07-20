@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 # Create your views here.
 from django.urls import reverse, reverse_lazy
@@ -66,22 +66,21 @@ class AccountUpdateView(UpdateView):
     #지금은 detail이 안됨. <int:pk>를 지정안했기 때문.
     template_name = 'accountapp/update.html'
 
-    #로그인=정보 일치한사람만 변경가능
+    #로그인=정보 일치한사람만 변경가능  <=여기까지는 '로그인만 되있으면' 다른사람 정보도 접속 가능했기에 수정해야함
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user: #동일 인물인지 확인.
         #밑에 것을 실행하기 전에 로그인 여부 확인
             return super().get(request, *args, **kwargs)
         else:
-            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            #다른 정보를 불러와서 잘못된 접근이라고 알려야 한다
+            return HttpResponseForbidden()
+
         #post메소드로 변경
     def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-        #밑에 것을 실행하기 전에 로그인 여부 확인
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().post(request, *args, **kwargs)
         else:
-            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
 
 
@@ -93,19 +92,19 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-        #밑에 것을 실행하기 전에 로그인 여부 확인
+        if request.user.is_authenticated and self.get_object() == request.user:  # 동일 인물인지 확인.
+            # 밑에 것을 실행하기 전에 로그인 여부 확인
             return super().get(request, *args, **kwargs)
         else:
-            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
-            return HttpResponseRedirect(reverse('accountapp:login'))
-        #post메소드로 변경
+            # 다른 정보를 불러와서 잘못된 접근이라고 알려야 한다
+            return HttpResponseForbidden()
+
+        # post메소드로 변경
+
     def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-        #밑에 것을 실행하기 전에 로그인 여부 확인
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().post(request, *args, **kwargs)
         else:
-            #로그인 되어 있지 않으니깐 로그인으로 보내버린다.
-            return HttpResponseRedirect(reverse('accountapp:login'))
+            return HttpResponseForbidden()
 
         #어짜피 안에 들어가는 내용은 똑같기에(로그인 확인, 정보 수정) 그대로 붙여 써도 상관없음.
