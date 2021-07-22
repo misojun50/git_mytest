@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#관리자 계정 만들기, python manage.py createsuperuser
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls'))
