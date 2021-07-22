@@ -8,6 +8,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from accountapp.decorators import account_owner_var
 from accountapp.forms import AccountCreationForm
 from accountapp.models import HelloWorld
 
@@ -49,15 +50,11 @@ class AccountDetailView(DetailView):
     context_object_name = 'target_User'
     template_name = 'accountapp/detail.html'
 
-#업데이트..?
-#createview,detailview 와 비슷함. 각각 요소를 다 들고온다고 생각하면 됨.
-#usercreationform은 아이디도 바꿔 버리기에 그거만 막아야함.
-#accountapp폴더에 forms.py생성
-
 
 #decorator사용
-@method_decorator(login_required, 'get')  # method_..<= 이건 변화만 해줌 + 'get'인지 'post'인지 적어줘야함
-@method_decorator(login_required, 'post') #<= 여기까지는 로그인 여부만 알려줌
+owner_var = [login_required, account_owner_var]
+@method_decorator(owner_var, 'get')
+@method_decorator(owner_var, 'post')  # 이렇게 하면 깔끔함
 class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
@@ -67,13 +64,9 @@ class AccountUpdateView(UpdateView):
     #지금은 detail이 안됨. <int:pk>를 지정안했기 때문.
     template_name = 'accountapp/update.html'
 
-
-
-
-
 #회원탈퇴 기능
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+@method_decorator(owner_var, 'get')
+@method_decorator(owner_var, 'post')
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_User'
