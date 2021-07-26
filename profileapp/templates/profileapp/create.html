@@ -11,7 +11,8 @@
             </h4>
         </div>
         <div>
-            <form action="{% url 'profileapp:create' %}" method="post">
+{#      이대로 두면 작동을 안하기에(정확히는 제출해도 반응없음) enctype="multi../form.. 추가해야함      #}
+            <form action="{% url 'profileapp:create' %}" enctype="multipart/form-data" method="post">
                 {% csrf_token %}
                 {% bootstrap_form form %}
                 <div class="m-5">
@@ -23,6 +24,6 @@
         </div>
     </div>
 
-
+{# 완료하면 에러가 뜰텐데 user속성이 없어서 그럼.#}
 
 {% endblock %}
