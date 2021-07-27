@@ -4,10 +4,21 @@
 {% block content %}
     <div class="text-center mw-500 m-auto">
         <div class="m-5">
-            <h4>
-{#      target_user를 통해서 username을 불러옴          #}
-                {{ target_User.username }}
-            </h4>
+{#      이제는 프로필이 있는지를 확인하고 username이 아닌 #}
+{#      profile의 nickname or message를 가져옴     #}
+{#      여기서 profile은 models.py에서 profile이라고 지정을 해뒀기 떄문에 사용가능  #}
+{#      src가 이미지를 못가져왔을 때 alt= 가 대체로 텍스트를 불러옴  #}
+            {% if target_User.profile %}
+                <img src="{{ target_User.profile.image.url }}" alt="profile image">
+                <h4>{{ target_User.profile.nickname }}</h4>
+                <h5>{{ target_User.profile.message }}</h5>
+            {% else %}
+                <h4>
+                    <a href={% url 'profileapp:create' %}>
+                        Create profile
+                    </a>
+                </h4>
+            {% endif %}
         </div>
         <div>
             {{ target_User.date_joined }}
