@@ -11,7 +11,7 @@
             </h4>
         </div>
         <div>
-{#      이대로 두면 작동을 안하기에(정확히는 제출해도 반응없음) enctype="multi../form.. 추가해야함      #}
+{#      이대로 두면 작동을 안하기에(정확히는 제출해도 반응없음) enctype="multi../form.. 추가해야함, 파일이나 이미지를 전송하는데 쓰임.      #}
             <form action="{% url 'profileapp:create' %}" enctype="multipart/form-data" method="post">
                 {% csrf_token %}
                 {% bootstrap_form form %}
