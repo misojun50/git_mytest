@@ -9,15 +9,17 @@
 {#      여기서 profile은 models.py에서 profile이라고 지정을 해뒀기 떄문에 사용가능  #}
 {#      src가 이미지를 못가져왔을 때 alt= 가 대체로 텍스트를 불러옴  #}
             {% if target_User.profile %}
-                <img src="{{ target_User.profile.image.url }}" alt="profile image">
-                <h4>{{ target_User.profile.nickname }}</h4>
+                <img src="{{ target_User.profile.image.url }}"
+                     class="profile_image m-4"
+                     alt="profile image">
+                <h2 class="NNS_B">{{ target_User.profile.nickname }}</h2>
                 <h5>{{ target_User.profile.message }}</h5>
             {% else %}
-                <h4>
+                <h2>
                     <a href={% url 'profileapp:create' %}>
                         Create profile
                     </a>
-                </h4>
+                </h2>
             {% endif %}
         </div>
         <div>
