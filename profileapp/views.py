@@ -1,24 +1,33 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView
 
+from profileapp.decorators import profile_owner_var
 from profileapp.forms import ProfileCreationForm
 from profileapp.models import Profile
 
-
+@method_decorator(login_required, 'get')
+@method_decorator(login_required, 'post')
 class ProfileCreationView(CreateView):
     model = Profile
     form_class = ProfileCreationForm
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'profileapp/create.html'
 
+
     def form_valid(self, form):
         # 검증과정이 끝나고 나서 실행되는 함수.(성공했을 때)
         form.instance.user = self.request.user
         return super().form_valid(form)# 부모의 form_valid값을 불러옴
 
+
+
+@method_decorator(profile_owner_var, 'get')
+@method_decorator(profile_owner_var, 'post')
 class ProfileUpdateView(UpdateView):
     model = Profile
     context_object_name = 'target_profile'
