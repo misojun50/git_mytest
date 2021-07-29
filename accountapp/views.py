@@ -60,9 +60,11 @@ class AccountUpdateView(UpdateView):
     form_class = AccountCreationForm
     #만들었던 form에서 가져옴
     context_object_name = 'target_User'
-    success_url = reverse_lazy('accountapp:hello_world')
     #지금은 detail이 안됨. <int:pk>를 지정안했기 때문.
     template_name = 'accountapp/update.html'
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk':self.object.pk})
 
 #회원탈퇴 기능
 @method_decorator(owner_var, 'get')
