@@ -15,8 +15,9 @@
                 <h2 class="NNS_B">
                     {{ target_User.profile.nickname }}
                     {% if user == target_User %}
-                        <a href={% url 'profileapp:update' pk=target_User.profile.pk %}>
-                            edit
+                        <a href={% url 'profileapp:update' pk=target_User.profile.pk %} class="material-icons round_button">
+{#          round_button css만들기              #}
+                                edit
                         </a>
                 </h2>
                         {% endif %}
