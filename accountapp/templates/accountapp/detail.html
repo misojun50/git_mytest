@@ -30,19 +30,16 @@
                 </h2>
             {% endif %}
         </div>
-        <div>
-            {{ target_User.date_joined }}
-        </div>
 {# 주소 입력으로 들어가면 정보가 그대로 노출됨. 막기 위한 용도 #}
         {% if user == target_User %}
             <div>
-                <a href="{% url 'accountapp:update' pk=target_User.pk %}">
-                    Update Info
+                <a href="{% url 'accountapp:update' pk=target_User.pk %}"
+                class="material-icons round_button mx-1">
+                    settings
                 </a>
-            </div>
-            <div>
-                <a href="{% url 'accountapp:delete' pk=target_User.pk %} ">
-                    Delete
+                <a href="{% url 'accountapp:delete' pk=target_User.pk %} "
+                class="material-icons round_button mx-1" >
+                    delete
                 </a>
             </div>
         {% endif %}
