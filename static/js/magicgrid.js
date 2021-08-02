@@ -282,6 +282,17 @@ let magicGrid = new MagicGrid({
   useMin: true
 });
 
+//로딩되면 이미지 자동으로 정렬하게 만들기
+var masonrys = document.getElementsByTagName("img")
+//모든 img태그를 찾는다
+
+//로드할때마다 위치 정렬
+for (let i=0; i < masonrys.length; i++) {
+  masonrys[i].addEventListener('load',function(){
+    magicGrid.positionItems();
+  }, false)
+}
+
 magicGrid.listen();
 
 // module.exports = MagicGrid;
