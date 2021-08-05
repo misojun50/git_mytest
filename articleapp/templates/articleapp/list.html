@@ -26,14 +26,24 @@
                 <a href="{% url 'articleapp:detail' pk=article.pk %}">
                     <img src="{{ article.image.url }}" alt="">
                 </a>
-            <span class="NNS_B "> {{ article.title }}</span>
+            <span class="NNS_B my-4"> {{ article.title }}</span>
             </div>
 
         {% endfor %}
     </div>
 
-<script src="{% static 'js/magicgrid.js' %}">
-</script>
+<script src="{% static 'js/magicgrid.js' %}"></script>
+
+    <div class="text-center">
+        <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill material-icons">
+            brush
+        </a>
+    <a href="{% url 'articleapp:create' %}" class="btn btn-outline-dark rounded-pill">
+            Create Article
+        </a>
+
+
+    </div>
 
 
 {% endblock %}
