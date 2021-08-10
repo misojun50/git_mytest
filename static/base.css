@@ -64,5 +64,12 @@
 .article_content{
         text-align: left;
         font-size: 1.2rem;
+}
 
+.comment_box{
+        text-align: left;
+        border: solid;
+        border-color: darkgray;
+        padding: 1rem;
+        border-radius: 1rem;
 }
