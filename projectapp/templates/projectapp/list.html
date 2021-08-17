@@ -9,8 +9,6 @@
         }
 
         .container div {
-          width: 45%;
-            max-width: 200px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -19,7 +17,9 @@
             box-shadow: 0 0 1rem gray;
         }
         .container img{
-            width: 100%;
+            width: 7rem;
+            height: 7rem;
+            object-fit: cover;
             border-radius: 1rem;
         }
 
@@ -31,7 +31,7 @@
                 <a href="{% url 'projectapp:detail' pk=project.pk %}">
                     <img src="{{ project.image.url }}" alt="">
                 </a>
-            <span class="NNS_B my-1"> {{ project.name }}</span>
+            <span class="NNS_B my-1"> {{ project.name | truncatechars:7 }}</span>
             </div>
 
         {% endfor %}
