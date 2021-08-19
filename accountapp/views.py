@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import account_owner_var
 from accountapp.forms import AccountCreationForm
@@ -14,6 +15,9 @@ from accountapp.models import HelloWorld
 
 
 #decorater 테스트. Django가 '또' 다해줌
+from articleapp.models import Article
+
+
 @login_required  #경로가 다를경우 @login_required(login_url=reverse_lazy('accountapp/login')
 def hello_world(request):
 
@@ -45,10 +49,15 @@ class AccountCreateView(CreateView):
 
 #로그인 시 로그인정보 불러오기
 #다음 urls.py에서 라우팅(경로) 설정
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = User
     context_object_name = 'target_User'
     template_name = 'accountapp/detail.html'
+    paginate_by = 20
+
+    def get_context_data(self, **kwargs):
+        article_list = Article.objects.filter(writer=self.object)
+        return super().get_context_data(object_list=article_list, **kwargs)
 
 
 #decorator사용
