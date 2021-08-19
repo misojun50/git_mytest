@@ -8,3 +8,7 @@ class Project(models.Model):
     image = models.ImageField(upload_to='project/', null=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    # 이거는 python 에서 어떻게 부를지를 정의하는거라 migration 필요없음
+    def __str__(self):
+        return f'{self.name}'

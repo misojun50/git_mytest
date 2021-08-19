@@ -7,9 +7,14 @@ from django.db import models
 #onetoonefield : 1대 1
 #Foreignkey : 1대 다수
 #on_delete = 작성자가 삭제했을때 : 작성자 미상으로 남김
+from projectapp.models import Project
+
+
 class Article(models.Model):
     writer = models.ForeignKey(User, on_delete=models.SET_NULL,
                                related_name='article', null=True)
+
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, related_name='article', null=True)
 
     title = models.CharField(max_length=200, null=True)
     image = models.ImageField(upload_to='article/', null=True)
