@@ -22,5 +22,7 @@ class Article(models.Model):
 
     created_at = models.DateField(auto_now_add=True, null=True)
     #이러면 지정해주지않아도 시간이 자동으로 입력됨.
+    like = models.IntegerField(default=0)
+
 # textfield = 긴 문자열
 # 모델 만들었으니 당연히 form도
