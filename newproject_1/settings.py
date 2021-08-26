@@ -167,5 +167,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #로그인 아웃 작성(login...)
 #로그인을 했으니 메인, 로그아웃을 헀으면 'login'화면으로
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:list')
+LOGIN_REDIRECT_URL = reverse_lazy('articleapp:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')

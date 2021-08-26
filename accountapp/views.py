@@ -24,7 +24,7 @@ from articleapp.models import Article
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:list')
+    success_url = reverse_lazy('articleapp:list')
     template_name = 'accountapp/create.html'
 # 이상 진짜로 간단한 회원가입 로직.
 # urls.py에 path 경로 내용 추가
@@ -64,7 +64,7 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_User'
-    success_url = reverse_lazy("accountapp:list")
+    success_url = reverse_lazy("articleapp:list")
     template_name = 'accountapp/delete.html'
 
 
