@@ -18,30 +18,13 @@ from accountapp.models import HelloWorld
 from articleapp.models import Article
 
 
-@login_required  #경로가 다를경우 @login_required(login_url=reverse_lazy('accountapp/login')
-def hello_world(request):
-
-    if request.method == "POST":
-        temp = request.POST.get('input_text')
-        new_hel = HelloWorld()
-        new_hel.text = temp
-        new_hel.save()
-
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))
-
-    else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html',
-                      context={'hello_world_list': hello_world_list})
-
-
 # CreateView 불러오기 그래도 어디 있는지 알아만 두면 편함
 # User, UserCreationForm 도 불러오기
 # class 에서는 "reverse_lazy" 를 쓰는데 함수에서의 reverse 방법과 class 에서의 reverse 방법이 다르기 때문.
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')
+    success_url = reverse_lazy('accountapp:list')
     template_name = 'accountapp/create.html'
 # 이상 진짜로 간단한 회원가입 로직.
 # urls.py에 path 경로 내용 추가
@@ -81,7 +64,7 @@ class AccountUpdateView(UpdateView):
 class AccountDeleteView(DeleteView):
     model = User
     context_object_name = 'target_User'
-    success_url = reverse_lazy("accountapp:hello_world")
+    success_url = reverse_lazy("accountapp:list")
     template_name = 'accountapp/delete.html'
 
 

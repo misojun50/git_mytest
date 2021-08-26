@@ -1,12 +1,11 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
+from accountapp.views import AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
 
 app_name = 'accountapp'
 
 urlpatterns = [
-    path('hello_world/', hello_world, name="hello_world"),
 # 함수는 classname.as_view() 추가
     path('create/', AccountCreateView.as_view(), name='create'),
 # 안뜨는게 정상. template설정을 안했기 때문.
