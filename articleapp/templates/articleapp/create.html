@@ -2,6 +2,10 @@
 {% load bootstrap4 %}
 
 {% block content %}
+    {#  medium-editor 글 꾸미기 기능. header는 다르게 이거는 이 페이지에서만 쓰기에 굳이 전체에 적용되는 header에 적용할 필요가 없음.  #}
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
 
    <div class="text-center mw-500 m-auto">
         <div class="m-5">
@@ -23,6 +27,7 @@
 
         </div>
     </div>
-
+{#  medium-editor 적용, form 에서 .editable로 지정해줘야 사용가능.  #}
+<script>var editor = new MediumEditor('.editable');</script>
 
 {% endblock %}
