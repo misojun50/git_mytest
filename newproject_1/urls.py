@@ -19,8 +19,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 #관리자 계정 만들기, python manage.py createsuperuser
+from articleapp.views import ArticleListView
 
 urlpatterns = [
+    path('', ArticleListView.as_view(), name='home'), #아무것도 없을 떄
+
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),
     path('profiles/', include('profileapp.urls')),
