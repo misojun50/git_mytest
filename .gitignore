@@ -87,3 +87,7 @@ __pycache__/
 media/
 
 staticfiles/
+
+newproject_1.pem
+
+test.py
