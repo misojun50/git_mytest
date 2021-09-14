@@ -1,4 +1,3 @@
-import os
 from .base import *
 
 env_list = dict()
