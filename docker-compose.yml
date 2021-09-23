@@ -1,0 +1,31 @@
+version: "3.7"
+#3.7인 이유 : 인식할 수 있는 가장 최신 버전이 3.7
+services:
+
+  nginx:
+    image: nginx:1.19.5
+    ports:
+      - 80:80
+    networks:
+      - myproject_1_network
+    volumes:
+      - /home/ubuntu/nginx.conf:/etc/nginx/nginx.conf
+      - project_static:/data/static/
+      - project_media:/data/media/
+
+  django:
+    image: mytest1:3
+    networks:
+      - myproject_1_network
+    volumes:
+      - project_static:/home/git_mytest/staticfiles/
+      - project_media:/home/git_mytest/media/
+
+
+#네트워크 만들기(말 그대로 이걸 그대로 만드는 것)
+networks:
+  myproject_1_network:
+
+volumes:
+  project_static:
+  project_media:
